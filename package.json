@@ -74,5 +74,15 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caocao12138/mt-app.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caocao12138/mt-app/issues"
+  },
+  "homepage": "https://github.com/Caocao12138/mt-app#readme"
 }
