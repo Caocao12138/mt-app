@@ -41,39 +41,39 @@
 
 <script>
 export default {
-  name: "Top-searchArea", //顶部-搜索区域
-  data() {
+  name: 'Top-searchArea', // 顶部-搜索区域
+  data () {
     return {
-      searchWord: "",
+      searchWord: '',
       isFocus: false,
-      hotPlaceList: ["全部分类", "美食", "外卖", "酒店HOT", "民宿", "猫眼电影"],
-      searchList: ["丽人", "美发", "医学美容", "结婚", "婚纱摄影", "婚宴"],
-    };
+      hotPlaceList: ['全部分类', '美食', '外卖', '酒店HOT', '民宿', '猫眼电影'],
+      searchList: ['丽人', '美发', '医学美容', '结婚', '婚纱摄影', '婚宴']
+    }
   },
   computed: {
     isHotPlace: function () {
       // 热门搜索框显示: 取决于 是聚焦 否输入内容
-      return this.isFocus && !this.searchWord;
+      return this.isFocus && !this.searchWord
     },
     isSearchList: function () {
       // 内容框显示: 取决于 是聚焦 否输入内容
-      return this.isFocus && this.searchWord;
-    },
+      return this.isFocus && this.searchWord
+    }
   },
   methods: {
     // #元素聚焦时触发
-    focus() {
-      this.isFocus = true;
+    focus () {
+      this.isFocus = true
     },
     // #元素失去焦点时触发
-    blur() {
-      let self = this;
+    blur () {
+      let self = this
       setTimeout(() => {
-        self.isFocus = false;
-      }, 200);
-    },
-  },
-};
+        self.isFocus = false
+      }, 200)
+    }
+  }
+}
 </script>
 
 <style lang="scss">

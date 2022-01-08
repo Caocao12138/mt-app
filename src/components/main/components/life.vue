@@ -62,28 +62,28 @@
 </template>
 
 <script>
-import sliderPicture from "./slider.vue";
+import sliderPicture from './slider.vue'
 export default {
-  name: "main-left-life", // 中间轮播图及右侧
+  name: 'main-left-life', // 中间轮播图及右侧
   components: {
-    sliderPicture, // 轮播图组件
+    sliderPicture // 轮播图组件
   },
   methods: {
     // #休闲生活图片 点击跳转
-    pictureLife() {
-      this.$router.push("./life");
+    pictureLife () {
+      this.$router.push('./life')
     },
-    pictureHotel() {
-      this.$router.push("./hotel");
+    pictureHotel () {
+      this.$router.push('./hotel')
     },
-    pictureMusic() {
-      this.$router.push("./music");
+    pictureMusic () {
+      this.$router.push('./music')
     },
-    pictureCoop() {
-      this.$router.push("./coop");
-    },
-  },
-};
+    pictureCoop () {
+      this.$router.push('./coop')
+    }
+  }
+}
 </script>
 
 <style lang="scss">

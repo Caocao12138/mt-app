@@ -25,8 +25,8 @@
 
 <script>
 export default {
-  name: "Top-informationArea-left", //顶部-信息-左边区域
-};
+  name: 'Top-informationArea-left' // 顶部-信息-左边区域
+}
 </script>
 
 <style scoped>

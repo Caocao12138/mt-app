@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import topBarLeft from "./topBarLeft.vue";
-import topBarRight from "./topBarRight.vue";
+import topBarLeft from './topBarLeft.vue'
+import topBarRight from './topBarRight.vue'
 export default {
-  name: "Top-informationArea", //顶部-信息区域
+  name: 'Top-informationArea', // 顶部-信息区域
   components: {
     topBarLeft,
-    topBarRight,
-  },
-};
+    topBarRight
+  }
+}
 </script>
 
 <style lang="scss">

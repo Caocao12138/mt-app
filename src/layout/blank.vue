@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "Blank-page",//空白页面
-};
+  name: 'Blank-page' // 空白页面
+}
 </script>
 
 <style>

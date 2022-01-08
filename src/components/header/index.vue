@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import topBar from "./topBar.vue";
-import searchBar from "./searchBar.vue";
+import topBar from './topBar.vue'
+import searchBar from './searchBar.vue'
 export default {
-  name: "top",//顶部
+  name: 'top', // 顶部
   components: {
     topBar,
-    searchBar,
-  },
-};
+    searchBar
+  }
+}
 </script>
 
 <style>

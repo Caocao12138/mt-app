@@ -127,8 +127,8 @@
 
 <script>
 export default {
-  name: "Top-informationArea-right", //顶部-信息-右边区域
-};
+  name: 'Top-informationArea-right' // 顶部-信息-右边区域
+}
 </script>
 
 <style scoped>
