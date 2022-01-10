@@ -339,7 +339,7 @@ export default {
     },
     // 鼠标移到二级栏保持显示
     detailEnter () {
-      console.log('1')
+      // console.log('1')
       clearTimeout(this.timer)
     },
     // 鼠标移出二级栏消失

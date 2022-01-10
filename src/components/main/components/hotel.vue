@@ -1,6 +1,6 @@
 <template>
   <div class="m-istyle">
-    <dl @mouseover="over" :class="nav.class">
+    <dl @mouseover="over" class="nav.istyle">
       <dt>{{ nav.title }}</dt>
       <dd
         v-for="(item, index) in nav.list"
