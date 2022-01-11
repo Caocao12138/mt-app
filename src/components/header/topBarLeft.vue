@@ -7,7 +7,7 @@
         切换城市
       </router-link>
       [
-      <a href="">齐河</a>
+      <router-link :to="{ name: 'index' }" href="">齐河</router-link>
       <a href="">长清区</a>
       <a href="">禹城</a>
       ]
