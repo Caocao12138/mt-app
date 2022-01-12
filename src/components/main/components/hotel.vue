@@ -12,7 +12,7 @@
       </dd>
     </dl>
     <ul class="ibody">
-      <li v-for="(item, index) in resultsData" :key="index">
+      <li v-for="(item, index) in resultsData" :key="index" @click="toDetail">
         <el-card :body-style="{ padding: '0px' }" shadow="never">
           <img :src="item.img" class="image" />
           <div class="cbody">
@@ -108,7 +108,7 @@ export default {
   // },
   methods: {
     over (e) {
-      console.log(e.target)
+      // console.log(e.target)
       const dom = e.target
       const tagName = dom.tagName.toLowerCase()
       if (tagName !== 'dd') {
@@ -116,6 +116,10 @@ export default {
       }
       this.kind = dom.getAttribute('data-type')
       // 动态获取数据  ajax请求
+    },
+    // #点击打开详情页
+    toDetail () {
+      this.$router.push('/detail')
     }
   }
 }

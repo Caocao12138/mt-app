@@ -45,6 +45,9 @@
         >span {
           font-size: 12px;
           margin-right: 10px;
+          a{
+            text-decoration: none;
+          }
         }
 
         .s-item-comment-total {
@@ -52,7 +55,8 @@
         }
 
         .s-item-price {
-          color: #f60;
+          // color: #f60;
+          color: #666;
         }
         .deal-items {
           .items {

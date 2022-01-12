@@ -4,6 +4,7 @@ import Default from '@/layout/default'
 import indexMain from '@/components/main'
 import Blank from '@/layout/blank'
 import cityPage from '@/components/changeCity'
+import detail from '@/components/productDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -23,6 +24,11 @@ export default new Router({
         path: '/changeCity',
         name: 'changeCity',
         component: cityPage
+      },
+      {
+        path: 'detail/:name',
+        name: 'detail',
+        component: detail
       }]
     },
     {

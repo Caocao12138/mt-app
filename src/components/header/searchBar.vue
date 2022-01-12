@@ -4,7 +4,7 @@
       <el-col :span="3" class="left">
         <router-link to="/">
           <img
-            src="//s0.meituan.net/bs/fe-web-meituan/10afbf1/img/logo.png"
+            src="https://s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png"
             alt="美团"
           />
         </router-link>
@@ -13,7 +13,7 @@
         <div class="wrapper">
           <el-input
             v-model="searchWord"
-            placeholder="请输入内容"
+            placeholder="搜索商家和地点"
             @focus="focus"
             @blur="blur"
           ></el-input>
@@ -21,14 +21,14 @@
           <dl class="hotPlace" v-if="isHotPlace">
             <dt>热门搜索</dt>
             <dd v-for="(item, index) in hotPlaceList" :key="index">
-              <router-link :to="{ name: 'goods', params: { name: item } }">{{
+              <router-link :to="{name: 'detail', params: {name: item}}">{{
                 item
               }}</router-link>
             </dd>
           </dl>
           <dl class="searchList" v-if="isSearchList">
             <dd v-for="(item, index) in searchList" :key="index">
-              <router-link :to="{ name: 'goods', params: { name: item } }">{{
+              <router-link :to="{name: 'detail', params: {name: item}}">{{
                 item
               }}</router-link>
             </dd>
