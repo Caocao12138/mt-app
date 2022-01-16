@@ -20,9 +20,9 @@ export default {
   name: 'main-container', // 中间区域
   data () {
     return {
-      iStyle: {
+      recomment: {
         class: 'istyle',
-        title: '有格调',
+        title: '吃喝住行',
         list: [{
           text: '全部',
           tab: 'all'
@@ -38,20 +38,6 @@ export default {
         }, {
           text: '品质出游',
           tab: 'travel'
-        }]
-      },
-      recomment: {
-        class: 'youhui',
-        title: '推荐民宿',
-        list: [{
-          text: '北京',
-          tab: 'all'
-        }, {
-          text: '济南',
-          tab: 'food'
-        }, {
-          text: '武穴',
-          tab: 'xiuxian'
         }]
       }
     }

@@ -2,17 +2,17 @@
   <div class="guess">
     <div class="title">猜你喜欢</div>
     <div class="content" v-for="(item, index) in guessData" :key="index">
-      <img :src="item.imgSrc" alt="">
-      <div class="merchant">{{item.merchant}}</div>
+      <img v-for="v in imgSrc" :key="v.imgid" :src="v.imgOne" alt="">
+      <div class="merchant">{{item.title}}</div>
       <p>
-        <el-rate  v-model="item.scoreValue" disabled>
+        <el-rate  v-model="item.score" disabled>
         </el-rate>
-        <span>{{item.comments}}个评价</span>
+        <span>{{item.commentNum}}个评价</span>
       </p>
-      <div class="position">{{item.position}}</div>
+      <div class="position">{{item.areaName}}</div>
       <div class="price">
         <span>¥</span>
-        <span class="priceNum">{{item.price}}</span>
+        <span class="priceNum">{{item.lowPrice}}</span>
         <span>起</span>
       </div>
     </div>
@@ -20,36 +20,24 @@
 </template>
 
 <script>
+import api from '@/api'
 export default {
   name: 'searchProduc-gusssYouLikeIt', // 搜索商品后-跳转的主页面-猜我喜欢 父级: productDetail / components /index.vue
+  created () {
+    api.getRecommend().then(rsp => {
+      // 处理远程数据score为字符串数据
+      for (let i = 0; i < rsp.data.data.length; i++) {
+        rsp.data.data[i].score = Number(rsp.data.data[i].score)
+      }
+      this.guessData = rsp.data.data
+    })
+  },
   data () {
     return {
-      guessData: [{
-        // type: 'life',
-        imgSrc: 'https://p1.meituan.net/biztone/102024596_1614741543903.jpeg@190w_106h_1e_1c',
-        merchant: 'coao初妆美甲美睫(SOHO尚都店)',
-        scoreValue: 3.5,
-        comments: '189',
-        position: '长清大学城 4 - 4 - 1',
-        price: '68.0'
-      },
-      {
-        // type: 'life',
-        imgSrc: 'https://p1.meituan.net/dpmerchantpic/7d14ceef2e3e2e32bd19c9ac1b80cd6e453412.jpg@220w_125h_1e_1c',
-        merchant: 'coao初妆美甲美睫(SOHO尚都店)',
-        scoreValue: 3.5,
-        comments: '189',
-        position: '长清大学城 4 - 4 - 1',
-        price: '68.0'
-      },
-      {
-        // type: 'life',
-        imgSrc: 'https://p0.meituan.net/msmerchant/a15b1e24ed8b36ebefde1c925ed6c875117239.jpg@220w_125h_1e_1c',
-        merchant: 'coao初妆美甲美睫(SOHO尚都店)',
-        scoreValue: 3.5,
-        comments: '189',
-        position: '长清大学城 4 - 4 - 1',
-        price: '68.0'
+      guessData: [],
+      imgSrc: [{
+        imgOne: 'https://p1.meituan.net/dpmerchantpic/93911da9be03b98da876b388515e9b87977677.jpg@190w_106h_1e_1c',
+        imgId: 'one'
       }]
     }
   }

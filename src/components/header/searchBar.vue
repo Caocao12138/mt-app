@@ -16,6 +16,7 @@
             placeholder="搜索商家和地点"
             @focus="focus"
             @blur="blur"
+            @input="inputing"
           ></el-input>
           <el-button type="primary" icon="el-icon-search"></el-button>
           <dl class="hotPlace" v-if="isHotPlace">
@@ -40,15 +41,21 @@
 </template>
 
 <script>
+import api from '@/api'
 export default {
   name: 'Top-searchArea', // 顶部-搜索区域
   data () {
     return {
       searchWord: '',
       isFocus: false,
-      hotPlaceList: ['全部分类', '美食', '外卖', '酒店HOT', '民宿', '猫眼电影'],
-      searchList: ['丽人', '美发', '医学美容', '结婚', '婚纱摄影', '婚宴']
+      hotPlaceList: [],
+      searchList: []
     }
+  },
+  created () {
+    api.searchHotWords().then(rsp => {
+      this.hotPlaceList = rsp.data.data
+    })
   },
   computed: {
     isHotPlace: function () {
@@ -71,6 +78,16 @@ export default {
       setTimeout(() => {
         self.isFocus = false
       }, 200)
+    },
+    // 用户输入时动态获取数据
+    inputing () {
+      console.log(this.searchWord)
+      let inputValue = this.searchWord
+      api.getSearchList().then(rsp => {
+        this.searchList = rsp.data.data.list.filter((item) => {
+          return item.indexOf(inputValue) > -1
+        })
+      })
     }
   }
 }

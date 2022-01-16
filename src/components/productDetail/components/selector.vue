@@ -3,7 +3,7 @@
         <dl class="tab">
             <dt>{{name}}<i class="el-icon-caret-bottom"></i></dt>
             <dd>
-                <dt class="select-title">{{name}}</dt>
+                <h3 class="select-title">{{name}}</h3>
                 <span v-for="(item, index) in list" :key="index">{{item.name}}</span>
             </dd>
         </dl>

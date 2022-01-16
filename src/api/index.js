@@ -37,6 +37,17 @@ var api = {
   },
   register (params) {
     return axios.get('/api/meituan/register', params)
+  },
+  getCatgroyList () {
+    return axios.get('/api/meituan/list/classify.json')
+  },
+  // 区域列表子类目
+  getRegionList () {
+    return axios.get('/api/meituan/list/areaList.json')
+  },
+  // 猜你喜欢
+  getRecommend () {
+    return axios.get('/api/meituan/list/recommend.json')
   }
 }
 

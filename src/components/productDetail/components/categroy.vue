@@ -24,40 +24,26 @@
 
 <script>
 import ddSelector from './selector.vue'
+import api from '@/api'
 export default {
   name: 'searchProduct-categroy', // 搜索商品后-跳转的主页面-分类 / 区域模块
   components: {
     ddSelector
   },
+  created () {
+    api.getCatgroyList().then(rsp => {
+      this.categoryList = rsp.data.data
+    })
+    api.getRegionList().then(rsp => {
+      console.log('区域子类目数据有问题(待完成)', rsp)
+    })
+  },
   data () {
     return {
       // 分类数据
-      categoryList: [{
-        'title': '美食',
-        'type': 'food',
-        'subList': [{
-          'name': '日本菜',
-          'id': 'Japan'
-        }]
-      }, {
-        'title': '酒店住宿',
-        'type': 'hotal',
-        'subList': [{
-          'name': '温泉酒店',
-          'id': 'hot_spring'
-        }]
-      }],
+      categoryList: [],
       // 区域数据
-      regionList: [{
-        'title': '推荐商圈',
-        'subList': [{
-          'name': '望京',
-          'id': 120000
-        }, {
-          'name': '昌平',
-          'id': 12222
-        }]
-      }]
+      regionList: []
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="">
     <span class="name">按省份选择: </span>
     <selector @change="clickChangeProvince" :list="provinceDataList" :title="provinceTitle" :value="province" :isShowWrapperActive='provinceActive' @change_active='changeProvinceActive' />
-    <selector @change="clickChangeCity" :list="cityList" :title="cityTitle" :value="city" :isShowWrapperActive='cityActive' @change_active='changeCityActive' />
+    <selector @change="clickChangeCity" :list="cityDataList" :title="cityTitle" :value="city" :isShowWrapperActive='cityActive' @change_active='changeCityActive' />
       <span>直接搜索: </span>
       <el-select
     v-model="searchWord"
@@ -24,9 +24,28 @@
 </template>
 
 <script>
+import api from '@/api'
 import selector from './selector.vue'
 export default {
-  name: 'changeCity-selectProvince', // 切换城市页面-按省份选择
+  name: 'changeCity-selectProvince', // 切换城市页面-按省份选择一栏
+  created () {
+    // 获取城市列表
+    api.getCityList().then(rsp => {
+      // console.log(rsp.data.data)
+      this.cityDataList = rsp.data.data
+    })
+    // 获取省份列表
+    api.getProvinceList().then(rsp => {
+      // console.log(rsp.data.data)
+      const provinceName = rsp.data.data.map(item => {
+        item.name = item.provinceName
+        return item.name
+      })
+      // console.log(provinceName)
+      rsp.data.data.provinceName = provinceName
+      this.provinceDataList = rsp.data.data
+    })
+  },
   data () {
     return {
       province: '省份',
@@ -36,7 +55,8 @@ export default {
       ],
       city: '城市',
       cityTitle: '城市',
-      cityList: ['武汉', '黄石', '十堰', '宜昌', '襄阳', '鄂州', '荆门', '孝感', '荆州', '黄冈', '咸宁', '随州', '武汉', '黄石', '十堰', '宜昌', '襄阳', '鄂州', '荆门', '孝感', '荆州', '黄冈', '咸宁', '随州'],
+      // cityList: ['武汉', '黄石', '十堰', '宜昌', '襄阳', '鄂州', '荆门', '孝感', '荆州', '黄冈', '咸宁', '随州', '武汉', '黄石', '十堰', '宜昌', '襄阳', '鄂州', '荆门', '孝感', '荆州', '黄冈', '咸宁', '随州'],
+      cityDataList: [],
       // 下拉菜单默认不显示
       provinceActive: false,
       cityActive: false,

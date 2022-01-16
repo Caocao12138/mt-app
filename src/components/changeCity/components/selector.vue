@@ -8,7 +8,7 @@
         <h2>{{ title }}</h2>
         <div class="wrapper">
           <div class="col" v-for="(item, index) in twelveArr" :key="index">
-            <span :class="{'mt-item': true, 'active': j === value}"  v-for="(j, i) in item" :key="i" @click="changeCityAndProvince(j)">{{j}}</span>
+            <span :class="{'mt-item': true, 'active': j === value}"  v-for="(j, i) in item" :key="i" @click="changeCityAndProvince(j)">{{j.name}}</span>
           </div>
         </div>
       </div>
@@ -30,7 +30,8 @@ export default {
     showWrapper (e) {
       e.stopPropagation()
       this.$emit('change_active', true) // 调用父组件监听的自定义事件并传参
-      this.twelveArr = this.listSlice(this.list, 12)
+      // console.log(this.list)
+      this.twelveArr = this.listSlice(this.list, 10)
     },
     cityDomClick () {
       this.$emit('change_active', false) // 调用父组件监听的自定义事件并传参

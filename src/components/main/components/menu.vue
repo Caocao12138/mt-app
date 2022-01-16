@@ -7,7 +7,7 @@
         :key="index"
         @mouseenter="menuEnter(item)"
       >
-        <i :class="item.icon"></i>{{ item.titel }}<span class="arrow"></span>
+        <i :class="item.type"></i>{{ item.name }}<span class="arrow"></span>
       </dd>
     </dl>
     <div
@@ -16,11 +16,11 @@
       @mouseenter="detailEnter"
       @mouseleave="detailLeave"
     >
-      <template v-for="(item, index) in curDetail.children">
-        <h4 :key="index">{{ item.titel }}</h4>
+      <template v-for="(item, index) in curDetail.items">
+        <h4 :key="index">{{ item.title }}</h4>
         <router-link
           to="/"
-          v-for="(v, i) in item.children"
+          v-for="(v, i) in item.items"
           :key="v + '_' + i"
           >{{ v }}</router-link
         >
@@ -30,300 +30,19 @@
 </template>
 
 <script>
+import api from '@/api'
 export default {
   name: 'main-left-menu', // 中间左侧菜单区域
   data () {
     return {
       curDetail: null,
-      menuList: [
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '外卖',
-          icon: 'takeout',
-          children: [
-            {
-              titel: '外卖',
-              children: ['美团外卖']
-            }
-          ]
-        },
-        {
-          titel: '酒店',
-          icon: 'hotel',
-          children: [
-            {
-              titel: '酒店星级',
-              children: ['经济型', '舒适/三星', '高档/四星', '豪华/五星']
-            }
-          ]
-        }, {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        },
-        {
-          titel: '美食',
-          icon: 'food',
-          children: [
-            {
-              titel: '美食',
-              children: [
-                '代金券',
-                '甜点饮品',
-                '火锅',
-                '自助餐',
-                '日韩料理',
-                '西餐',
-                '聚餐宴请',
-                '烧烤烤肉'
-              ]
-            }
-          ]
-        }
-      ]
+      menuList: []
     }
+  },
+  created () {
+    api.getMenuList().then(rsp => {
+      this.menuList = rsp.data.data
+    })
   },
   methods: {
     // 鼠标移入菜单显示二级栏
