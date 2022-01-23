@@ -1,10 +1,24 @@
 <template>
   <div class="">
     <span class="name">按省份选择: </span>
-    <selector @change="clickChangeProvince" :list="provinceDataList" :title="provinceTitle" :value="province" :isShowWrapperActive='provinceActive' @change_active='changeProvinceActive' />
-    <selector @change="clickChangeCity" :list="cityDataList" :title="cityTitle" :value="city" :isShowWrapperActive='cityActive' @change_active='changeCityActive' />
-      <span>直接搜索: </span>
-      <el-select
+    <selector
+    @change="clickChangeProvince"
+     :list="provinceDataList"
+     :title="provinceTitle"
+     :value="province"
+     :isShowWrapperActive='provinceActive'
+     @change_active='changeProvinceActive' />
+
+    <selector
+    :disabled='cityDisabled'
+    @change="clickChangeCity"
+    :list="cityDataList"
+    :title="cityTitle"
+    :value="city"
+    :isShowWrapperActive='cityActive'
+    @change_active='changeCityActive' />
+    <span>直接搜索: </span>
+    <el-select
     v-model="searchWord"
     filterable
     remote
@@ -50,9 +64,7 @@ export default {
     return {
       province: '省份',
       provinceTitle: '省份',
-      provinceDataList: [
-        '山东', '甘肃', '江苏', '北京', '云南', '海南', '浙江', '上海', '天津', '陕西', '新疆', '贵州', '安徽', '澳门', '湖南', '河北', '香港', '辽宁', '四川', '宁夏', '吉林', '福建', '湖北', '广东', '重庆', '山西', '江西', '黑龙江', '青海', '河南', '台湾', '内蒙古', '西藏', '广西'
-      ],
+      provinceDataList: [],
       city: '城市',
       cityTitle: '城市',
       // cityList: ['武汉', '黄石', '十堰', '宜昌', '襄阳', '鄂州', '荆门', '孝感', '荆州', '黄冈', '咸宁', '随州', '武汉', '黄石', '十堰', '宜昌', '襄阳', '鄂州', '荆门', '孝感', '荆州', '黄冈', '咸宁', '随州'],
@@ -62,7 +74,8 @@ export default {
       cityActive: false,
       searchList: ['武汉', '黄石', '十堰', '宜昌', '襄阳', '鄂州', '荆门', '孝感', '荆州', '黄冈', '咸宁', '随州'],
       searchWord: '',
-      loading: false
+      loading: false,
+      cityDisabled: true // 城市列表默认为不能选中
     }
   },
   components: {
@@ -91,10 +104,15 @@ export default {
       console.log(searchWordValue)
     },
     clickChangeProvince (val) {
-      this.province = val
+      this.province = val.name
+      this.cityDataList = val.cityInfoList // 根据省份更新城市列表数据
+      this.cityDisabled = false
+      // this.$store.dispatch('setPosition', val)
     },
     clickChangeCity (val) {
-      this.city = val
+      this.city = val.name
+      this.$store.dispatch('setPosition', val)
+      this.$router.push({name: 'index'})
     }
   }
 }

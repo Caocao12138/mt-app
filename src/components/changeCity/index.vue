@@ -18,7 +18,7 @@ export default {
   created () {
     // 获取热门城市数据
     api.getHotCity().then(rsp => {
-      console.log(rsp)
+      // console.log(rsp)
       this.hotCityList = rsp.data.data
     })
   },

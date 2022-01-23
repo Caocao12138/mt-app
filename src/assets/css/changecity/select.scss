@@ -1,7 +1,9 @@
 .choose-wrap {
     display: inline-block;
     &.disabled {
-      cursor: not-allowed;
+      >.choose{
+        cursor: not-allowed;
+      }
     }
     >.choose{
         cursor: pointer;
