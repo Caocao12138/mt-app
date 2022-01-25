@@ -1,6 +1,6 @@
 <template>
   <div class="blank-page">
-    <h1>空白页面</h1>
+    <router-view></router-view>
   </div>
 </template>
 
