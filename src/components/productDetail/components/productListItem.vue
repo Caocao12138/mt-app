@@ -23,6 +23,7 @@
       </p>
       <p>
         <span class="s-item-tab">
+          <!-- eslint-disable-next-line -->
           <span v-for="(v, i) in meta.tab" :key="i">{{v + (i < meta.tab.length - 1 ? ' | ' : '' )}}</span>
         </span>
         <span class="s-item-addr">{{meta.address}}</span>
